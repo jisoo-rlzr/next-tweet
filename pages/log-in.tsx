@@ -1,21 +1,10 @@
-import useUser from "@lib/useUser";
 import Input from "components/input";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const Login: NextPage = () => {
-  const { user } = useUser();
   const router = useRouter();
-
-  useEffect(() => {
-    if (user) {
-      router.replace("/");
-    }
-  }, [user]);
-
-  if (user) return null;
 
   const onSubmit = e => {
     e.preventDefault();

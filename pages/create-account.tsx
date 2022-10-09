@@ -1,21 +1,10 @@
-import useUser from "@lib/useUser";
 import Input from "components/input";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const CreateAccount: NextPage = () => {
-  const { user } = useUser();
   const router = useRouter();
-
-  useEffect(() => {
-    if (user) {
-      router.replace("/");
-    }
-  }, [user]);
-
-  if (user) return null;
 
   const onSubmit = e => {
     e.preventDefault();
@@ -35,7 +24,6 @@ const CreateAccount: NextPage = () => {
         .then(res => res.json())
         .then(json => {
           if (json.ok) {
-            alert("Account created.");
             router.replace("/log-in");
           } else {
             alert(json.message);
